@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import styles from "./style.module.scss";
+import { useRouter } from "next/navigation";
 
 const Dashboard = () => {
   const [pumpkins, setPumpkins] = useState<number[]>([]);
@@ -8,15 +9,33 @@ const Dashboard = () => {
   const [bats, setBats] = useState<number[]>([]);
   
   const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
+  const [musicPlaying, setMusicPlaying] = useState(false);
+
+  const router = useRouter();
 
   useEffect(() => {
-    setAudio(new Audio("/halloween.mp3"));
+    const newAudio = new Audio("/halloween.mp3");
+    setAudio(newAudio);
+
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        newAudio.pause();
+        setMusicPlaying(false);
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      newAudio.pause();
+      newAudio.currentTime = 0;
+    };
   }, []);
-  const [musicPlaying, setMusicPlaying] = useState(false);
 
   const playMusic = () => {
     audio?.play().then(() => {
-      setMusicPlaying(true); 
+      setMusicPlaying(true);
     }).catch((error) => {
       console.error("Audio play error:", error);
     });
@@ -27,6 +46,7 @@ const Dashboard = () => {
     screamSound.play().catch((error) => {
       console.error("Audio play error:", error);
     });
+    router.push("/player")
   };
 
   const playLaughtSound = () => {
@@ -34,6 +54,7 @@ const Dashboard = () => {
     laughtSound.play().catch((error) => {
       console.error("Audio play error:", error);
     });
+    router.push("/host")
   };
 
   useEffect(() => {
@@ -84,8 +105,6 @@ const Dashboard = () => {
         </button>
       )}
       
-      <div className="container">
-     
         <img
           src="/spider.png"
           alt=""
@@ -99,12 +118,14 @@ const Dashboard = () => {
           alt=""
           className={styles["darkspiderweb"]}
         />
+      <div className="container">
+     
 
         <div className={styles["dashboard"]}>
-          <img src="/holbi.png" alt="" width={400} height={150} />
+          <img src="/holbi.png" alt="" width={400} height={150} className={styles["mirror"]} />
           <div className={styles["dashboard_page"]}>
             <div className={styles["btns"]}>
-              <button className="green" onClick={playScreamSound}>Player</button>
+              <button className="black" onClick={playScreamSound}>Player</button>
               <button className="orange" onClick={playLaughtSound}>Host</button>
             </div>
           </div>

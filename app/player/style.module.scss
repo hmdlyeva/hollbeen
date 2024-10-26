@@ -49,8 +49,13 @@
       justify-content: center;
       align-items: center;
 
-      h3 {
-        color: red;
+      .password {
+        color: rgb(182, 9, 0);
+        font-family: "Nosifer", sans-serif;
+        font-size: 40px;
+      }
+      .nickname{
+        color: rgb(21, 0, 0);
         font-family: "Nosifer", sans-serif;
         font-size: 40px;
       }

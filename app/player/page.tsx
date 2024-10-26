@@ -5,41 +5,41 @@ import styles from "./style.module.scss";
 
 const Host = () => {
   const [headbones, setHeadbones] = useState<number[]>([]);
-//   const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
-//   const [musicPlaying, setMusicPlaying] = useState(false);
+  // const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
+  // const [musicPlaying, setMusicPlaying] = useState(false);
 
-//   const router = useRouter();
+  // const router = useRouter();
 
-//   useEffect(() => {
-//     const newAudio = new Audio("/halloween.mp3");
-//     setAudio(newAudio);
+  // useEffect(() => {
+  //   const newAudio = new Audio("/halloween.mp3");
+  //   setAudio(newAudio);
 
-//     const handleVisibilityChange = () => {
-//       if (document.hidden) {
-//         newAudio.pause();
-//         setMusicPlaying(false);
-//       }
-//     };
+  //   const handleVisibilityChange = () => {
+  //     if (document.hidden) {
+  //       newAudio.pause();
+  //       setMusicPlaying(false);
+  //     }
+  //   };
 
-//     document.addEventListener("visibilitychange", handleVisibilityChange);
+  //   document.addEventListener("visibilitychange", handleVisibilityChange);
 
-//     return () => {
-//       document.removeEventListener("visibilitychange", handleVisibilityChange);
-//       newAudio.pause();
-//       newAudio.currentTime = 0;
-//     };
-//   }, []);
+  //   return () => {
+  //     document.removeEventListener("visibilitychange", handleVisibilityChange);
+  //     newAudio.pause();
+  //     newAudio.currentTime = 0;
+  //   };
+  // }, []);
 
-//   const playMusic = () => {
-//     audio
-//       ?.play()
-//       .then(() => {
-//         setMusicPlaying(true);
-//       })
-//       .catch((error) => {
-//         console.error("Audio play error:", error);
-//       });
-//   };
+  // const playMusic = () => {
+  //   audio
+  //     ?.play()
+  //     .then(() => {
+  //       setMusicPlaying(true);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Audio play error:", error);
+  //     });
+  // };
 
   const playScreamSound = () => {
     const screamSound = new Audio("/scream.mp3");
@@ -72,7 +72,7 @@ const Host = () => {
         <img src="/darkspider.png" alt="" className={styles["darkspider"]} />
         <div className={styles["host"]}>
           <div className={styles["host_page"]}>
-            <h3>Room Id</h3>
+            <h3 className={styles["password"]}>Room Id</h3>
             <input
               type="password"
               name="roomid"
@@ -80,6 +80,18 @@ const Host = () => {
               placeholder="create room id"
               onFocus={playScreamSound}
             />
+            <br />
+            <br />
+
+            <h3 className={styles["nickname"]}>Nickname</h3>
+            <input
+              type="text"
+              name="nickname"
+              id="nickname"
+              placeholder="nickname"
+              onFocus={playScreamSound}
+            />
+
             <div className={styles["btns"]}>
               <button className="black" onClick={playLaughtSound}>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width={20} height={20}>
