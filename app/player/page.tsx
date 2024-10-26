@@ -1,14 +1,15 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import styles from "./style.module.scss";
-// import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const Host = () => {
+  const [nickname, setNickname] = useState("")
   const [headbones, setHeadbones] = useState<number[]>([]);
   // const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
   // const [musicPlaying, setMusicPlaying] = useState(false);
 
-  // const router = useRouter();
+  const router = useRouter();
 
   // useEffect(() => {
   //   const newAudio = new Audio("/halloween.mp3");
@@ -53,6 +54,20 @@ const Host = () => {
     laughtSound.play().catch((error) => {
       console.error("Audio play error:", error);
     });
+
+      if (nickname) {
+        const storedPlayers = localStorage.getItem('players');
+        const players = storedPlayers ? JSON.parse(storedPlayers) : [];
+  
+        players.push(nickname);
+  
+        localStorage.setItem('players', JSON.stringify(players));
+  
+        router.push("/lobi")
+      } else {
+        alert('Lütfen bir nickname girin!');
+      }
+
   };
 
   useEffect(() => {
@@ -90,6 +105,7 @@ const Host = () => {
               id="nickname"
               placeholder="nickname"
               onFocus={playScreamSound}
+              onChange={(e)=>setNickname(e.target.value)}
             />
 
             <div className={styles["btns"]}>
