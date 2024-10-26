@@ -10,7 +10,7 @@ const Dashboard = () => {
   const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    setAudio(new Audio("/scream.mp3"));
+    setAudio(new Audio("/halloween.mp3"));
   }, []);
   const [musicPlaying, setMusicPlaying] = useState(false);
 
