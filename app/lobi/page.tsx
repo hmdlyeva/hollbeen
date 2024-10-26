@@ -2,7 +2,16 @@
 import React, { useEffect, useState } from "react";
 import styles from "./style.module.scss";
 // import { useRouter } from "next/navigation";
-const colors = ["#FFFFFF", "#333333", "#FF0000", "#FFA500", "#FF8C00", "#FF4500"];
+import Pumpkin from "@/components/ui/Pumpkin";
+const colors = [
+  "#FFFFFF",
+  "#333333",
+  "#FF0000",
+  "#FFA500",
+  "#FF8C00",
+  "#FF4500",
+];
+
 const Lobi = () => {
   const [players, setPlayers] = useState<string[]>([]);
 
@@ -21,7 +30,14 @@ const Lobi = () => {
             <p>{players.length}</p>
             <div className={styles["players_section"]}>
               {players.map((nickname, index) => (
-                <div  style={{ backgroundColor: colors[index % colors.length] }} className={styles["player_circle"]} key={index}>{nickname.slice(0,2)}</div>
+                <div key={index} className={styles["player"]}>
+                  <div className={styles["player_circle"]}>
+                    <div className={styles["pumpkinsvg"]}>
+                      <Pumpkin color={colors[index % colors.length]} />
+                    </div>
+                  </div>
+                  <span>{nickname.slice(0,8)}</span>
+                </div>
               ))}
             </div>
           </div>
