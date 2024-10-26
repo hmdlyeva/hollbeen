@@ -7,11 +7,15 @@ const Dashboard = () => {
   const [spiderags, setSpiders] = useState<number[]>([]);
   const [bats, setBats] = useState<number[]>([]);
   
-  const [audio] = useState(new Audio("/halloween.mp3"));
+  const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    setAudio(new Audio("/scream.mp3"));
+  }, []);
   const [musicPlaying, setMusicPlaying] = useState(false);
 
   const playMusic = () => {
-    audio.play().then(() => {
+    audio?.play().then(() => {
       setMusicPlaying(true); 
     }).catch((error) => {
       console.error("Audio play error:", error);
