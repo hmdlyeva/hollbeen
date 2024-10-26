@@ -1,8 +1,7 @@
 import React from 'react'
 import styles from  "./style.module.scss"
-type Props = {}
 
-const Host = (props: Props) => {
+const Host = () => {
   return (
    <div className={styles["host_page"]}>
     <div className="container">

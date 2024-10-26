@@ -1,9 +1,8 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./style.module.scss";
-type Props = {};
 
-const Dashboard = (props: Props) => {
+const Dashboard = () => {
   const [pumpkins, setPumpkins] = useState<number[]>([]);
   const [spiderags, setSpiders] = useState<number[]>([]);
   const [bats, setBats] = useState<number[]>([]);
